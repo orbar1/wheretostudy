@@ -1,0 +1,2 @@
+# wheretostudy
+![](wheretostudy.gif)
