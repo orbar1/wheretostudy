@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+  <div id="body-container">
+    <h1> <i class="fas fa-user-graduate"></i>  ברוכים הבאים ל"היכן לומדים?"</h1>
+  
+    <div class ="form-control">
+      <input id="search" type="text" placeholder="חיפוש מקום ידני...">
+    </div>
+    
+    <div id=map></div>
+   
+
+
+    <div class = "wrapper">
+    <form class="myForm" autocomplete="off" method="POST">
+        <div class="autocomplete" style="width:300px;">
+          <input id="myInput" type="text" name="degreeName" placeholder="אנא הקלד\י שם מקצוע">
+        </div>
+        <input type="submit">
+      </form>
+    </div>
+
+<div class="father_forms_div">
+
+<div class = "wrapper">
+<form id = "CS_Form" hidden>
+  <select id="מדעי_המחשב" onchange="initMapCS()" >
+      <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+      <option  value="מכללת_חולון">מכללת חולון</option>
+      <option  value="מכללת_ספיר">מכללת ספיר</option>
+      <option  value="הטכניון">הטכניון</option>
+  </select>
+</form>
+</div>
+
+<div class = "wrapper take_to_top">
+  <form id = "Madaei_Haruah_Form" hidden>
+    <select id="מדעי_הרוח" onchange="initMapMadaeiHaruah()" >
+        <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+        <option  value="האוניברסיטה_הפתוחה">האוניברסיטה הפתוחה</option>
+        <option  value="אוניברסיטת_בר_אילן">אוניבריסטת בר אילן</option>
+    </select>
+  </form>
+  </div>
+
+  <div class = "wrapper take_to_top">
+    <form id = "Handasat_Hashmal" hidden>
+      <select id="הנדסת_חשמל" onchange="initMapHandasatHashmal()" >
+          <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+          <option  value="מכללת_אפקה">מכללת אפקה</option>
+          <option  value="אוניברסיטת_בר_אילן">אוניבריסטת בר אילן</option>
+          <option  value="הטכניון">הטכניון</option>
+      </select>
+    </form>
+    </div>
+
+    <div class = "wrapper take_to_top">
+      <form id = "Adrihalut" hidden>
+        <select id="אדריכלות" onchange="initMapAdrihalut()" >
+            <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+            <option  value="אוניברסיטת_אריאל">אוניברסיטת אריאל</option>
+            <option  value="אוניברסיטת_תל_אביב">אוניברסיטת תל אביב</option>
+            <option  value="הטכניון">הטכניון</option>
+        </select>
+      </form>
+      </div>
+
+      <div class = "wrapper take_to_top">
+        <form id = "Omanut" hidden>
+          <select id="אמנות" onchange="initMapOmanut()" >
+              <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+              <option  value="האוניברסיטה_הפתוחה">האוניברסיטה הפתוחה</option>
+              <option  value="אוניברסיטת_בן_גוריון">אוניברסיטת בן גוריון</option>
+          </select>
+        </form>
+        </div>
+
+        <div class = "wrapper take_to_top">
+          <form id = "Astronomia" hidden>
+            <select id="אסטרונומיה" onchange="initMapAstronomia()" >
+                <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                <option  value="אוניברסיטת_תל_אביב">אוניברסיטת תל אביב</option>
+            </select>
+          </form>
+          </div>
+
+          <div class = "wrapper take_to_top">
+            <form id = "Adrihalut_Nof" hidden>
+              <select id="אדריכלות_נוף" onchange="initMapAdrihalutNof()" >
+                  <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                  <option  value="הטכניון">הטכניון</option>
+              </select>
+            </form>
+            </div>
+
+            <div class = "wrapper take_to_top">
+              <form id = "Horaat_Anglit" hidden>
+                <select id="הוראת_אנגלית" onchange="initMapHoraatAnglit()" >
+                    <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                    <option  value="המכללה_האקדמית_הערבית_לחינוך_בישראל">המכללה האקדמית הערבית לחינוך בישראל</option>
+                    <option  value="המכללה_האקדמית_לחינוך_גבעת_וושינגטון">המכללה האקדמית לחינוך גבעת וושינגטון</option>
+                    <option  value="מכללה_ירושלים">מכללה ירושלים - מכללה לבנות דתיות</option>
+                    <option  value="המכללה_האקדמית_אחוה">המכללה האקדמית אחוה</option>
+                    <option  value="המכללה_האקדמית_בית_ברל">המכללה האקדמית בית ברל</option>
+                    <option  value="חמדת_הדרום">חמדת הדרום</option>
+                    <option  value="מכללת_אורנים">מכללת אורנים</option>
+                    <option  value="מכללת_סמינר_הקיבוצים">מכללת סמינר הקיבוצים</option>
+                </select>
+              </form>
+              </div>
+
+              <div class = "wrapper take_to_top">
+                <form id = "Horaat_Biologia" hidden>
+                  <select id="הוראת_ביולוגיה" onchange="initMapHoraatBiologia()" >
+                      <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                      <option  value="המכללה_האקדמית_הערבית_לחינוך_בישראל">המכללה האקדמית הערבית לחינוך בישראל</option>
+                      <option  value="מכללת_אורנים">מכללת אורנים</option>
+                      <option  value="מכללת_סמינר_הקיבוצים">מכללת סמינר הקיבוצים</option>
+                      <option  value="תל_חי(לשעבר אוהלו)">תל חי - קמפוס חדשנות בחינוך ובהוראה ( לשעבר אוהלו )</option>
+                  </select>
+                </form>
+                </div>
+
+                <div class = "wrapper take_to_top">
+                  <form id = "Horaat_Madaim" hidden>
+                    <select id="הוראת_מדעים" onchange="initMapHoraatMadaim()" >
+                        <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                        <option  value="מכללה_ירושלים">מכללה ירושלים - מכללה לבנות דתיות</option>
+                        <option  value="חמדת_הדרום">חמדת הדרום</option>
+                        <option  value="הטכניון">הטכניון</option>
+                    </select>
+                  </form>
+                  </div>
+
+                  <div class = "wrapper take_to_top">
+                    <form id = "Horaat_Matmatika" hidden>
+                      <select id="הוראת_מתמטיקה" onchange="initMapHoraatMatmatika()" >
+                          <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                          <option  value="המכללה_האקדמית_הערבית_לחינוך_בישראל">המכללה האקדמית הערבית לחינוך בישראל</option>
+                          <option  value="המכללה_האקדמית_לחינוך_גבעת_וושינגטון">המכללה האקדמית לחינוך גבעת וושינגטון</option>
+                          <option  value="מכללה_ירושלים">מכללה ירושלים - מכללה לבנות דתיות</option>
+                          <option  value="מכללת_סכנין">מכללת סכנין</option>
+                          <option  value="מכללת_אורנים">מכללת אורנים</option>
+                          <option  value="מכללת_סמינר_הקיבוצים">מכללת סמינר הקיבוצים</option>
+                          <option  value="תל_חי(לשעבר אוהלו)">תל חי - קמפוס חדשנות בחינוך ובהוראה ( לשעבר אוהלו )</option>
+                      </select>
+                    </form>
+                    </div>
+
+                    <div class = "wrapper take_to_top">
+                      <form id = "Horaat_Aravit" hidden>
+                        <select id="הוראת_ערבית" onchange="initMapHoraatAravit()" >
+                            <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                            <option  value="מכללת_סכנין">מכללת סכנין</option>
+                            <option  value="המכללה_האקדמית_הערבית_לחינוך_בישראל">המכללה האקדמית הערבית לחינוך בישראל</option>
+                            <option  value="מכללת_אורנים">מכללת אורנים</option>
+                        </select>
+                      </form>
+                      </div>
+
+                      <div class = "wrapper take_to_top">
+                        <form id = "Handasat_Binian" hidden>
+                          <select id="הנדסת_בניין" onchange="initMapHandasatBinian()" >
+                              <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                              <option  value="מכללת_סמי_שמעון">מכללת סמי שמעון</option>
+                              <option  value="אוניברסיטת_בן_גוריון">אוניברסיטת בן גוריון</option>
+                              <option  value="אוניברסיטת_אריאל">אוניברסיטת אריאל</option>
+                              <option  value="הטכניון">הטכניון</option>
+                          </select>
+                        </form>
+                        </div>
+
+                        <div class = "wrapper take_to_top">
+                          <form id = "Geografia" hidden>
+                            <select id="גיאוגרפיה" onchange="initMapGeografia()" >
+                                <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                                <option  value="אוניבריסטת_חיפה">אוניבריסטת חיפה</option>
+                                <option  value="אוניברסיטת_בן_גוריון">אוניברסיטת בן גוריון</option>
+                                <option  value="אוניברסיטת_בר_אילן">אוניבריסטת בר אילן</option>
+                                <option  value="אוניברסיטת_תל_אביב">אוניברסיטת תל אביב</option>
+                                <option  value="האוניברסיטה_העברית">האוניברסיטה העברית בירושלים</option>
+                            </select>
+                          </form>
+                          </div>
+
+                          <div class = "wrapper take_to_top">
+                            <form id = "Biologia" hidden>
+                              <select id="ביולוגיה" onchange="initMapBiologia()" >
+                                  <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                                  <option  value="אוניברסיטת_אריאל">אוניברסיטת אריאל</option>
+                                  <option  value="אוניברסיטת_תל_אביב">אוניברסיטת תל אביב</option>
+                                  <option  value="אוניבריסטת_חיפה">אוניבריסטת חיפה</option>
+                                  <option  value="הטכניון">הטכניון</option>
+                              </select>
+                            </form>
+                            </div>
+
+                            <div class = "wrapper take_to_top">
+                              <form id = "Balshanut" hidden>
+                                <select id="בלשנות" onchange="initMapBalshanut()" >
+                                    <option  value="דפולטיבי" selected>בחר מוסד לימוד</option>
+                                    <option  value="אוניברסיטת_בן_גוריון">אוניברסיטת בן גוריון</option>
+                                    <option  value="אוניברסיטת_תל_אביב">אוניברסיטת תל אביב</option>
+                                    <option  value="האוניברסיטה_העברית">האוניברסיטה העברית בירושלים</option>                                    
+                                </select>
+                              </form>
+                              </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- scripts -->
+
+<script defer
+src="https://maps.googleapis.com/maps/api/js?callback=showMap&libraries=places&key=<YOUR GOOGLE MAPS API KEY HERE>">
+</script>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/c6566f41fc.js" crossorigin="anonymous"></script>
+<!-- scripts end -->
+
+</body>
+</html>
